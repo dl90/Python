@@ -1,0 +1,9 @@
+virtual python environment for package installs
+
+
+python3 -m venv <folder name>
+
+/bin
+source activate
+
+pip3 install pytest
