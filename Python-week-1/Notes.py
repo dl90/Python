@@ -1,9 +1,9 @@
 # print("hello") # python3
 # print "hello"  # python2
 
-# multiline comment does not exist (not supoorted) in python
+# multiline comment does not exist (not supported) in python
 """
-doc string area, used for documentaion, not multiline comment.
+doc string area, used for documentation, not multiline comment.
 This function do ....
 help() uses this to find things.
 """
