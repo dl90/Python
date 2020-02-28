@@ -8,8 +8,8 @@ class Program:
 
     def __init__(self):
         self.__storage = reminder_storage.ReminderStorage()
-        self.__action = None
         self.__state = True
+        self.__action = None
 
     def run(self):
         main_menu = (
@@ -25,6 +25,7 @@ class Program:
 
         while self.__state:
             print(main_menu)
+
             try:
                 self.__action = int(input("Enter an option: ").strip())
             except:
@@ -98,29 +99,51 @@ class Program:
         while action:
             print(search_menu)
             try:
-                action = int(input("Enter an option: ").strip())
+                action_ = int(input("Enter an option: ").strip())
             except:
                 print("Incorrect input. Please enter a valid option.\n")
+                action_ = 0
 
-            if action == 1:
+            if action_ == 1:
                 self.search_reminders_by_tag()
                 action = 0
-            elif action == 2:
+            elif action_ == 2:
                 self.search_reminders_by_reminder()
                 action = 0
-            elif action == 3:
+            elif action_ == 3:
                 self.search_reminders_by_tag_and_reminder()
                 action = 0
-            elif action == 4:
+            elif action_ == 4:
                 print("Returning to main menu")
                 action = False
-            elif action == 5:
+            elif action_ == 5:
                 print("Exiting program")
                 action = False
                 self.__state = False
             else:
                 print("Please enter a valid option.")
 
+    # def search_reminder(self, type):
+    #     query_message = {
+    #         "tag": "Enter tag: ",
+    #         "text": "Enter text: ",
+    #         "both": "Enter search term: "
+    #     }
+    #     input_ = input(query_message["tag"]).strip()
+    #     not_found = True
+
+    #     def by_tag(reminder_obj, input, state):
+    #         if input in reminder_obj.tag:
+    #             print(str(self.__storage.storage.index(reminder_obj) + 1) + ". " + reminder_obj.tag)
+    #             print(reminder_obj.reminder)
+    #             state = True
+    #             return state
+
+    #     if len(input_) > 0:
+    #         print("\n---------------")
+            # for reminder_obj in self.__storage.storage:
+            #     if input_ in reminder_obj.
+        
 
     def search_reminders_by_tag(self):
         tag_ = input("Enter tag: ").strip()
@@ -194,7 +217,7 @@ class Program:
                 print("Your reminder has been replaced with: " + self.__storage.storage[_id - 1].reminder)
 
         def append_reminder():
-            _input = input("Enter new reminder to replace: ").strip()
+            _input = input("Enter things to add to reminder: ").strip()
             if(len(_input) > 0):
                 updated_reminder = self.__storage.storage[_id - 1].reminder + " " + _input
                 self.__storage.storage[_id - 1].reminder = updated_reminder
@@ -212,30 +235,36 @@ class Program:
                 _id = int(input("Enter reminder id (press 0 to exit): ").strip())
                 if (_id > 0) and (_id <= limit):
                     invalid = False
-                elif _id == 0:
-                    invalid = False
+                # elif _id == 0:
+                #     invalid = False
             except:
                 print("Incorrect input. Try again.")
 
-        while action and (type(_id) == int and _id != 0):
+        while action and (type(_id) == int): #and _id != 0
             print(modify_menu)
             try:
-                action = int(input("Enter an option: ").strip())
+                action_ = int(input("Enter an option: ").strip())
             except:
                 print("Incorrect input. Please enter a valid option.")
-            if action == 1:
+                action_ = 0
+            if action_ == 1:
                 replace_reminder()
                 action = False
-            elif action == 2:
-                replace_reminder()
+                action_ = 0
+            elif action_ == 2:
+                append_reminder()
                 action = False
-            elif action == 3:
+                action_ = 0
+            elif action_ == 3:
                 remove_reminder()
                 action = False
-            elif action == 4:
+                action_ = 0
+            elif action_ == 4:
                 action = False
-            elif action == 5:
+                action_ = 0
+            elif action_ == 5:
                 action = False
+                action_ = 0
                 self.__state = False
             else:
                 print("Please enter a valid option.")
@@ -266,16 +295,5 @@ class Program:
             print("This file does not exist.")
 
 
-# test1 = reminder.Reminder("test1, test2, test3", "Reminder test1")
-# test2 = reminder.Reminder("", "Reminder test2")
-# test3 = reminder.Reminder("", "Reminder test3")
-# test4 = reminder.Reminder("", "Reminder test4")
-# test5 = reminder.Reminder("test1", "Reminder test5")
-
 program = Program()
-# program.add_existing_reminder(test1)
-# program.add_existing_reminder(test2)
-# program.add_existing_reminder(test3)
-# program.add_existing_reminder(test4)
-# program.add_existing_reminder(test5)
 program.run()
